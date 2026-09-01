@@ -2,34 +2,41 @@
 
 > Module 1 · The Agent Line
 >
-> ✅ **What this validates:** every risky action has a clear owner — by the end you'll have proven an above/below-the-line map with HITL checkpoints, scored on reversibility, blast radius, and measurability.
+> ✅ What this validates: every risky action has a clear owner — by the end we have an above/below-the-line map with HITL checkpoints, scored on reversibility, blast radius, and measurability.
 
-## The workflow, decision by decision
-
-List every discrete decision or action in your agent's workflow, then score each one and place it **above** the line (a human owns it) or **below** (the agent owns it). Borderline calls get an HITL checkpoint.
+## 1. The workflow, decision by decision
 
 | Decision / action | Reversibility (H/M/L) | Blast radius (H/M/L) | Measurability (H/M/L) | Above / Below | HITL? |
 |---|---|---|---|---|---|
-| _Pull project state + recent GitHub/Jira activity_ | H | L | H | Below | · |
-| _Draft the weekly leadership status update_ | H | M | M | Below | spot-check |
-| _Propose next sprint's stories from the PRD (within cap)_ | M | M | M | Below | spot-check |
-| _Post the update to a channel / commit a ship date_ | L | H | M | Above | required |
-| _Mark a launch gate green / merge or close a ticket_ | L | H | M | Above | required |
-| _…_ | | | | | |
+| Pull project state + activity | H | L | H | Below | No |
+| Decide relevant context | H | L | H | Below | No |
+| Draft the weekly leadership status update | H | M | H | Below | No |
+| Decide tone / commitment level | M | H | M | Above | Yes |
+| Flag at-risk / escalation | H | M | H | Below | No |
+| Choose what to escalate | M | H | M | Above | Yes |
+| Propose next sprint's stories (within cap) | H | M | H | Below | No |
+| Post an update / approve a company-wide one | L | H | H | Above | Required |
 
-## Agent anatomy (sketch)
+## 2. Golden rule, applied
 
-- **Model:** _your default fast model + when you escalate to a frontier model, and why_
-- **Tools:** _project + activity lookup (read) · past-update search · roadmap · team norms · story proposal (capped) …_
-- **Memory:** _what persists across runs (roadmap, decisions, norms) vs. purged_
-- **Loop:** _placeholder, defined in M2 loop-spec.md_
-- **Bounds:** _placeholder, defined in M5 bounds-and-evals.md_
-- **Evals:** _placeholder, defined in M5 bounds-and-evals.md_
+- Pull project state + activity sits below the line because it is highly reversible, low blast radius, and easy to verify.
+- Decide relevant context sits below the line because it is a bounded reasoning step with low operational risk.
+- Draft the weekly leadership status update sits below the line because the draft is editable and remains a proposal until a human approves it.
+- Decide tone / commitment level is a HITL step because commitment language has meaningful blast radius and can overstate certainty before a human reviews it.
+- Flag at-risk / escalation sits below the line because identifying risk is part of the analysis, not a human decision to act.
+- Choose what to escalate sits above the line because only a human can decide what deserves escalation and what a human must own.
+- Propose next sprint's stories (within cap) sits below the line because it is a queued proposal, not a real commitment.
+- Post an update / approve a company-wide one sits above the line because it is the irreversible, high-blast-radius action that must remain human-owned.
 
-## The golden rule, applied
+## 3. Agent anatomy (sketch)
 
-_One sentence per above-the-line decision: why it stays human (which of reversibility / blast radius / measurability failed)._
+- **Model:** the default fast model drafts the update and reasons over the project facts, while a human remains the approval layer for commitment language and external send actions.
+- **Tools:** project + activity lookup (read), past-update search, roadmap, team norms, and a capped story proposal tool.
+- **Memory:** current task brief, retrieved facts, and short-lived working context; durable project and policy memory are held only when they are still relevant.
+- **Loop:** placeholder for M2 loop-spec.md
+- **Bounds:** placeholder for M5 bounds-and-evals.md
+- **Evals:** placeholder for M5 bounds-and-evals.md
 
-## Hardest call
+## 4. Hardest call
 
-_Your toughest "above vs below" decision and how you resolved it. (Share this in `#cohort-channel`.)_
+The hardest call was `decide tone / commitment level`. It sits at the boundary between useful drafting and unsafe certainty. The deciding axis was blast radius: a confident sentence can sound like a commitment even when the agent has only prepared a draft. Because the act of making a commitment is not the same as gathering facts, it belongs in HITL rather than full autonomy.
